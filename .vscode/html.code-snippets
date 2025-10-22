@@ -1,0 +1,19 @@
+{
+  "Emmet HTML5 bang": {
+    "prefix": "!",
+    "body": [
+      "<!DOCTYPE html>",
+      "<html lang=\"pt-BR\">",
+      "  <head>",
+      "    <meta charset=\"utf-8\">",
+      "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+      "    <title>${1:Documento}</title>",
+      "  </head>",
+      "  <body>",
+      "    ${0}",
+      "  </body>",
+      "</html>"
+    ],
+    "description": "HTML5 boilerplate (expande '!')"
+  }
+}

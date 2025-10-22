@@ -1,0 +1,35 @@
+{
+  // 🔹 Emmet (responsável por gerar estrutura HTML com "!")
+  "emmet.includeLanguages": {
+    "erb": "html",
+    "javascript": "javascriptreact",
+    "vue": "html",
+    "php": "html",
+    "html": "html"
+  },
+  "emmet.triggerExpansionOnTab": true,
+
+  // 🔹 Sugestões e autocompletar
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.wordBasedSuggestions": true,
+  "editor.tabCompletion": "on",
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.snippetSuggestions": "inline",
+  "editor.suggest.showWords": true,
+
+  // 🔹 Suporte a HTML5 e outras linguagens
+  "html.suggest.html5": true,
+  "javascript.suggest.enabled": true,
+  "typescript.suggest.enabled": true,
+
+  // 🔹 Garantir associações corretas
+  "files.associations": {
+    "*.html": "html",
+    "index.html": "html"
+  }
+}

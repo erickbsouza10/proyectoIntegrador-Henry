@@ -1,0 +1,7 @@
+[
+  {
+    "key": "ctrl+e",
+    "command": "editor.emmet.action.expandAbbreviation",
+    "when": "editorTextFocus && editorLangId == html"
+  }
+]
