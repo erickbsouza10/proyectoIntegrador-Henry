@@ -16,7 +16,7 @@
     "strings": true
   },
   "editor.suggestOnTriggerCharacters": true,
-  "editor.wordBasedSuggestions": true,
+  "editor.wordBasedSuggestions": "matchingDocuments",
   "editor.tabCompletion": "on",
   "editor.acceptSuggestionOnEnter": "on",
   "editor.snippetSuggestions": "inline",

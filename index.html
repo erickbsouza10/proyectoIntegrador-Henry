@@ -1,11 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Henry - Proyecto de integration</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-    
+    <header>
+        <h1>
+            <img src="img/henry-logo.png" alt="logo Henry">
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="#home" class="active-menu">Home</a></li>
+                <li><a href="#generar-contrasena">Generar Contraseña</a></li>
+                <li><a href="#caja-fuerte">Caja Fuerte</a></li>
+                <li><a href="#monitorio">Monitorio de Actividad</a></li>
+                <li><a href="#gestion-usuarios">Gestíon de usuarios</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="home active" id="home">
+        <div class="info-main">
+            <h5>Seguridad personalizada y efectiva</h5>
+            <h2>Henry</h2>
+            <h2 class="bg-yellow">Security SAS</h2>
+            <h3>Protegemos tus datos, impulsamos tu confianza.</h3>
+        </div>
+
+        <img src="img/home-candado.png" alt="image-home">
+    </section>
+    <section id="generar-contrasena">
+        <h2 class="title">Asistente De Seguridad</h2>
+        <h5 class="subtitle">Generador de contraseñas para usuarios:</h5>
+
+        <div class="container">
+            <div class="form">
+                <label for="candidad">Cantidad de caracteres deseados</label>
+                <input type="text" id="cantidad">
+            </div>
+            <div class="form">
+                <label for="incluir-especiales">¿Incluir caracteres especiales? (si/no)</label>
+                <input type="text" id="incluir-especiales">
+            </div>
+            <div class="form">
+                <label for="incluir-numeros">¿Incluir caracteres números? (si/no)</label>
+                <input type="text" id="incluir-numeros">
+            </div>
+            <div class="form">
+                <label for="incluir-mayusculas">¿Incluir caracteres mayúsculas? (si/no)</label>
+                <input type="text" id="incluir-mayusculas">
+            </div>
+            <p id="contrasena"></p>
+            <button id="generar">Generar contraseña</button>
+        </div>
+    </section>
+    <section id="caja-fuerte">
+        <h2 class="title">Asistente De Seguridad</h2>
+        <h5 class="subtitle">Caja Fuerte</h5>
+        <div class="container">
+            <div class="form">
+                <label for="codigo-secreto">Código Secreto</label>
+                <input type="password" id="codigo-secreto">
+                <label for="cantidad-intentos">Cantidad de intentos</label>
+                <input type="number" id="cantidad-intentos">
+                <button class="button-ver" id="guardar">GUARDAR</button>
+            </div>
+            <div class="form">
+                <label for="validar-codigo">Validar Código Secreto</label>
+                <input type="password" id="validar-codigo">
+            </div>
+            <div class="form">
+                <button id="validar-codigo-button" class="button-accion">VALIDAR CÓDIGO</button>
+                <button id="reset" class="button-accion">RESET</button>
+            </div>
+        </div>
+    </section>
+    <section id="monitorio"></section>
+    <section id="gestion-usuarios">
+        <h2 class="title">Asistente De Seguridad</h2>
+        <h5 class="subtitle">Gestión de Perfiles:</h5>
+        <div class="container">
+            <div class="form">
+                <label for="ver-perfiles">Ver Perfiles</label>
+                <input type="text" style="width: 150px" placeholder="Título" id="ver-perfiles">
+                <button class="button-ver" id="button-ver-perfiles">VER</button>
+                <p id="ver-perfiles-resultado"></p>
+            </div>
+            <div class="form">
+                <label for="perfiles-antiguedad">Ver Perfiles Por Antiguedad</label>
+                <button class="button-ver" id="button-ver-antiguedad">VER</button>
+                <p id="ver-antiguedad-resultado"></p>
+            </div>
+            <div class="form">
+                <label for="ver-administradores">Ver Administradores</label>
+                <button class="button-ver" id="button-ver-administradores">VER</button>
+                <p id="ver-administradores"></p>
+            </div>
+            <h4 class="info">Modificar Acceso</h4>
+            <div class="form">
+                <label for="usuario">Usuario</label>
+                <input type="text" style="width: 150px" placeholder="Usuario" id="usuario">
+            </div>
+            <div class="form">
+                <label for="codigo">Nuevo código de acceso</label>
+                <input type="text" style="width: 150px" placeholder="Codigo" id="codigo">
+            </div>
+
+            <button id="actualizar">ACTUALIZAR</button>
+        </div>
+    </section>
+    <script src="app.js"></script>
 </body>
+
 </html>
