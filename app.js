@@ -103,16 +103,16 @@ var asistente = {
   verPerfilesPorAntiguedad: function () {
     return [...perfiles].sort((a, b) => b.antiguedad - a.antiguedad);
   },
-  verAdministradores: function() {
+  verAdministradores: function () {
     var filtrar = perfiles.filter(p => p.nivel_de_autorizacion === "admin");
     return filtrar.map(p => p.usuario);
   },
-  modificarAcesso: function(usuario, nuevoCodigo){
+  modificarAcesso: function (usuario, nuevoCodigo) {
     if (!/^\d{4}$/.test(nuevoCodigo)) {
       return "codigo de acceso invalido, debe contener solo 4 numeros";
     }
     const perfil = perfiles.find(p => p.usuario.toLowerCase() === usuario.toLowerCase());
-    if(!perfil){
+    if (!perfil) {
       return "usuario no encontrado";
     }
     perfil.codigo = Number(nuevoCodigo);
@@ -128,22 +128,22 @@ document.getElementById("button-ver-perfiles").addEventListener("click", functio
     alert("introduce un valor")
   }
 });
-document.getElementById("button-ver-antiguedad").addEventListener("click", function(){
+document.getElementById("button-ver-antiguedad").addEventListener("click", function () {
   const resultado = asistente.verPerfilesPorAntiguedad();
   const target = document.getElementById("ver-antiguedad-resultado");
 
   target.innerHTML = resultado.map(p => `<li>${p.usuario} - ${p.antiguedad}</li>`).join("");
 });
 
-document.getElementById("button-ver-administradores").addEventListener("click", function(){
-    document.getElementById("ver-administradores").textContent = asistente.verAdministradores();
+document.getElementById("button-ver-administradores").addEventListener("click", function () {
+  document.getElementById("ver-administradores").textContent = asistente.verAdministradores();
 });
 
-document.getElementById("actualizar").addEventListener("click", function(){
-    const usuario = document.getElementById("usuario").value;
-    const codigo = document.getElementById("codigo").value;
-    const resultado = asistente.modificarAcesso(usuario, codigo);
-    alert(resultado)
+document.getElementById("actualizar").addEventListener("click", function () {
+  const usuario = document.getElementById("usuario").value;
+  const codigo = document.getElementById("codigo").value;
+  const resultado = asistente.modificarAcesso(usuario, codigo);
+  alert(resultado)
 })
 
 
@@ -154,25 +154,25 @@ var cajaFuerte = {
   intentosActuales: 0,
   codigo: "",
 
-  guardar: function(codigo, intentos){
+  guardar: function (codigo, intentos) {
     this.codigo = codigo;
     this.cantidadIntentos = parseInt(intentos);
     this.intentosActuales = 0;
     return "Código e intentos guardados com sucesso.";
   },
-  validar: function(codigoEntrada){
-      if(this.intentosActuales >= this.cantidadIntentos){
-        return "Acesso bloqueado. Número máximo de tentativas atingido.";
-      }
-      this.intentosActuales++;
-      if(codigoEntrada === this.codigo){
-        return "Acesso permitido!";
-      }else{
-        return "Acesso denegado! Tentativas restantes: "+ (this.cantidadIntentos - this.intentosActuales);
+  validar: function (codigoEntrada) {
+    if (this.intentosActuales >= this.cantidadIntentos) {
+      return "Acesso bloqueado. Número máximo de tentativas atingido.";
+    }
+    this.intentosActuales++;
+    if (codigoEntrada === this.codigo) {
+      return "Acesso permitido!";
+    } else {
+      return "Acesso denegado! Tentativas restantes: " + (this.cantidadIntentos - this.intentosActuales);
 
-      }
+    }
   },
-  reset: function(){
+  reset: function () {
     this.intentosActuales = 0;
     this.cantidadIntentos = 0;
     this.codigo = "";
@@ -181,29 +181,116 @@ var cajaFuerte = {
   }
 
 };
-document.getElementById("guardar").addEventListener("click", function(){
-    const codigo = document.getElementById("codigo-secreto").value;
-    const intentos = document.getElementById("cantidad-intentos").value;
-    if(codigo != "" && intentos != ""){
-      const guardar = cajaFuerte.guardar(codigo, intentos);
-      alert(guardar)
-    }else{
-      alert("rellena todos los campos")
+document.getElementById("guardar").addEventListener("click", function () {
+  const codigo = document.getElementById("codigo-secreto").value;
+  const intentos = document.getElementById("cantidad-intentos").value;
+  if (codigo != "" && intentos != "") {
+    const guardar = cajaFuerte.guardar(codigo, intentos);
+    alert(guardar)
+  } else {
+    alert("rellena todos los campos")
+  }
+})
+document.getElementById("validar-codigo-button").addEventListener("click", function () {
+  const entradaCodigo = document.getElementById("validar-codigo").value;
+  if (entradaCodigo != "") {
+    const validar = cajaFuerte.validar(entradaCodigo);
+    alert(validar)
+  } else {
+    alert("rellena el campo")
+  }
+})
+document.getElementById("reset").addEventListener("click", function () {
+  const reset = cajaFuerte.reset();
+  alert(reset);
+  document.getElementById("validar-codigo").value = "";
+  document.getElementById("cantidad-intentos").value = "";
+  document.getElementById("codigo-secreto").value = "";
+})
+
+
+//monitoreo de actividad sospechosa
+
+var actividades = [
+  { id: 0, description: "asdf", riesgo: "medio" },
+  { id: 1, description: "asdf", riesgo: "medio" },
+  { id: 2, description: "asdf", riesgo: "medio" },
+  { id: 3, description: "asdf", riesgo: "alto" }
+];
+var monitorio = {
+  agregarActividad: function (description, nivel) {
+    if (description != "" && nivel != "") {
+      var guardar = {
+        id: actividades.length, description: description, riesgo: nivel
+      };
+      actividades.push(guardar);
+      alert("Actividad agregada correctamente");
+    } else {
+      alert("Debes completar todos los campos");
+      return;
     }
-})
-document.getElementById("validar-codigo-button").addEventListener("click", function(){
-    const entradaCodigo = document.getElementById("validar-codigo").value;
-    if(entradaCodigo != ""){
-        const validar = cajaFuerte.validar(entradaCodigo);
-        alert(validar)
+
+  },
+  filtrarActividades: function (nivel) {
+    var filtradas = actividades.filter(p => p.riesgo.toLocaleLowerCase() === nivel.toLocaleLowerCase());
+
+    if(filtradas.length === 0){
+       alert("No hay actividades con ese nivel de riesgo");
     }else{
-      alert("rellena el campo")
+      return filtradas
     }
+
+  },
+  eliminarActividad: function(id){
+    var eliminar = parseInt(id);
+    var filtrado = actividades.filter(p => p.id === eliminar);
+    if(filtrado.length === 0){
+      alert("No hay actividades con ese ID");
+    }else{
+      var index = actividades.findIndex(p => p.id === eliminar);
+      actividades.splice(index, 1);
+      alert("Actividad eliminada correctamente");
+      console.table(actividades)
+    }
+
+  },
+  reporteActividades: function(nombre){
+    if(nombre != ""){
+      return `<h5>${nombre}</h5>`+ actividades.map(p => `<li>${p.id} - ${p.description} - ${p.riesgo}</li>`).join("");
+    }else{
+      alert("Debes completar el campo");
+      return;
+    }
+  }
+}
+
+document.getElementById("agregar-actividad").addEventListener("click", function () {
+  const description = document.getElementById("description").value;
+  const nivel = document.getElementById("nivel-de-riesgo").value;
+  monitorio.agregarActividad(description, nivel);
+});
+document.getElementById("mostrar-actividades").addEventListener("click", function () {
+  const filtro = document.getElementById("filtrar-actividades").value;
+  const resultado = document.getElementById("resultado-filtro");
+  resultado.innerHTML = monitorio.filtrarActividades(filtro).map(p => `<li>${p.id} - ${p.description}</li>`).join("")
+
+});
+document.getElementById("eliminar-actividad").addEventListener("click", function () {
+  const eliminar = document.getElementById("eliminar-sospechosa").value;
+  monitorio.eliminarActividad(eliminar);
+});
+
+document.getElementById("reporte-actividades-button").addEventListener("click", function(){
+    const nombre = document.getElementById("reporte-actividades").value;
+    document.getElementById("reporte").innerHTML = monitorio.reporteActividades(nombre)
 })
-document.getElementById("reset").addEventListener("click", function(){
-    const reset = cajaFuerte.reset();
-    alert(reset);
-    document.getElementById("validar-codigo").value ="";
-    document.getElementById("cantidad-intentos").value ="";
-    document.getElementById("codigo-secreto").value ="";
-})
+
+
+//responsividade
+const toggle = document.getElementById('menu-toggle');
+const nav = document.querySelector('nav');
+
+toggle.addEventListener('click', () => {
+  nav.classList.toggle('active');
+  toggle.classList.toggle('active');
+});

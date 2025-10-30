@@ -20,6 +20,7 @@
         <h1>
             <img src="img/henry-logo.png" alt="logo Henry">
         </h1>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
         <nav>
             <ul>
                 <li><a href="#home" class="active-menu">Home</a></li>
@@ -86,7 +87,38 @@
             </div>
         </div>
     </section>
-    <section id="monitorio"></section>
+    <section id="monitorio">
+        <h2 class="title">Asistente De Seguridad</h2>
+        <h5 class="subtitle" style="width: 30%;">SISTEMA DE MONITOREO DE ACTIVIDAD SOSPECHOSA</h5>
+        <div class="container">
+            <div class="form">
+                <label for="description">Descripción</label>
+                <input type="text" id="description">
+                <label for="nivel-de-riesgo">Nivel de riesgo</label>
+                <input type="text" id="nivel-de-riesgo">
+                <button class="button-ver" style="width: 25vh;" id="agregar-actividad">AGREGAR ACTIVIDAD</button>
+            </div>
+            <div class="form">
+                <label for="eliminar-sospechosa">Eliminar una actividad sospechosa</label>
+                <input type="text" id="eliminar-sospechosa" placeholder="ID:">
+                <button style="width: 25vh;" class="button-ver" id="eliminar-actividad">ELIMINAR ACTIVIDAD</button>
+            </div>
+
+            <div class="form">
+                <label for="filtrar-actividades">Filtra actividades por nivel de riesgo</label>
+                <input type="text" id="filtrar-actividades">
+                <button style="width: 25vh;" class="button-ver" id="mostrar-actividades">MOSTRAR ACTIVIDADES</button>
+            </div>
+            <p id="resultado-filtro"></p>
+            <div class="form">
+                <label for="reporte-actividades">Reporte de actividades</label>
+                <input type="text" id="reporte-actividades" placeholder="Nombre del reporte">
+                <button style="width: 25vh;" class="button-ver" id="reporte-actividades-button">GENERAR REPORTE</button>
+                
+            </div>
+            <div id="reporte"></div>
+        </div>
+    </section>
     <section id="gestion-usuarios">
         <h2 class="title">Asistente De Seguridad</h2>
         <h5 class="subtitle">Gestión de Perfiles:</h5>
