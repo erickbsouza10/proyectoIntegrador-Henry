@@ -425,13 +425,16 @@ section{
     .container {
         width: 90%;
         max-width: 480px;
-        padding: 25px;
-        margin: 0 auto; /* centraliza o container */
         display: flex;
         flex-direction: column;
         align-items: center; /* centraliza o conteúdo dentro */
-        box-sizing: border-box;
+        box-sizing: border-box !important;
+        gap: 15px;
     }
+    .container input{
+        max-width: 200px !important;
+    }
+
     #ver-perfiles-resultado{
         font-size: 10px;
     }

@@ -234,19 +234,19 @@ var monitorio = {
   filtrarActividades: function (nivel) {
     var filtradas = actividades.filter(p => p.riesgo.toLocaleLowerCase() === nivel.toLocaleLowerCase());
 
-    if(filtradas.length === 0){
-       alert("No hay actividades con ese nivel de riesgo");
-    }else{
+    if (filtradas.length === 0) {
+      alert("No hay actividades con ese nivel de riesgo");
+    } else {
       return filtradas
     }
 
   },
-  eliminarActividad: function(id){
+  eliminarActividad: function (id) {
     var eliminar = parseInt(id);
     var filtrado = actividades.filter(p => p.id === eliminar);
-    if(filtrado.length === 0){
+    if (filtrado.length === 0) {
       alert("No hay actividades con ese ID");
-    }else{
+    } else {
       var index = actividades.findIndex(p => p.id === eliminar);
       actividades.splice(index, 1);
       alert("Actividad eliminada correctamente");
@@ -254,10 +254,10 @@ var monitorio = {
     }
 
   },
-  reporteActividades: function(nombre){
-    if(nombre != ""){
-      return `<h5>${nombre}</h5>`+ actividades.map(p => `<li>${p.id} - ${p.description} - ${p.riesgo}</li>`).join("");
-    }else{
+  reporteActividades: function (nombre) {
+    if (nombre != "") {
+      return `<h5>${nombre}</h5>` + actividades.map(p => `<li>${p.id} - ${p.description} - ${p.riesgo}</li>`).join("");
+    } else {
       alert("Debes completar el campo");
       return;
     }
@@ -280,9 +280,9 @@ document.getElementById("eliminar-actividad").addEventListener("click", function
   monitorio.eliminarActividad(eliminar);
 });
 
-document.getElementById("reporte-actividades-button").addEventListener("click", function(){
-    const nombre = document.getElementById("reporte-actividades").value;
-    document.getElementById("reporte").innerHTML = monitorio.reporteActividades(nombre)
+document.getElementById("reporte-actividades-button").addEventListener("click", function () {
+  const nombre = document.getElementById("reporte-actividades").value;
+  document.getElementById("reporte").innerHTML = monitorio.reporteActividades(nombre)
 })
 
 
@@ -294,3 +294,10 @@ toggle.addEventListener('click', () => {
   nav.classList.toggle('active');
   toggle.classList.toggle('active');
 });
+
+document.querySelectorAll("nav a").forEach(link => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("active");
+  });
+});
+
